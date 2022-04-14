@@ -50,13 +50,13 @@ export default NextAuth({
           token.user = user;
           break;
       }
-      console.log({ token, account, user });
+      //console.log({ token, account, user });
       return token;
     },
     async session({ session, token, user }) {
       session.accessToken = token.accessToken;
       session.user = token.user;
-      console.log({ session, token, user });
+      //console.log({ session, token, user });
       return session;
     },
   },

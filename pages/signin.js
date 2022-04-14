@@ -1,41 +1,25 @@
 import { useState } from 'react';
-import {
-  getCsrfToken,
-  getProviders,
-  signIn,
-  getSession,
-} from 'next-auth/react';
+import { getCsrfToken, signIn, getSession } from 'next-auth/react';
+import { Formik } from 'formik';
+//CHAKRA
+import { Button, Heading, VStack } from '@chakra-ui/react';
+//HOOKS
 import { useRouter } from 'next/router';
+//OTROS
 
-export default function SignIn({ csrfToken, providers }) {
+import { TextField } from '../components/forms/TextField';
+import { validaSignIn } from '../lib';
+
+export default function SignIn({ csrfToken }) {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
-  const [name, setName] = useState('');
 
-  const signupUser = async (e) => {
-    e.preventDefault();
-    setMessage(null);
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password, name }),
-    });
-    let data = await res.json();
-    if (data.message) {
-      setMessage(data.message);
-    }
-    if (data.message === 'Registro etsitoso') {
-      await signIn('credentials', { email, password });
-      return router.push('/');
-    }
+  const registro = () => {
+    router.push('/register');
   };
 
-  const signInUser = async (e) => {
-    e.preventDefault();
+  const signInUser = async (values, actions) => {
+    const { correo: email, password } = values;
     let options = { redirect: false, email, password };
     const res = await signIn('credentials', options);
     setMessage(null);
@@ -45,42 +29,66 @@ export default function SignIn({ csrfToken, providers }) {
     return router.push('/');
   };
 
+  const initialValues = {
+    correo: '',
+    password: '',
+  };
+
   return (
     <>
-      <form>
-        <input type='hidden' name='csrfToken' defaultValue={csrfToken} />
-        <label>
-          Nombre
-          <input
-            type='name'
-            id='name'
-            name='name'
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </label>
-        <label htmlFor='email'>Correo</label>
-        <input
-          type='email'
-          id='email'
-          name='email'
-          value={email}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-        />
-        <label htmlFor='password'>Password</label>
-        <input
-          type='password'
-          id='password'
-          name='password'
-          value={password}
-          onChange={(e) => setPassword(e.currentTarget.value)}
-        />
-        <p style={{ color: 'red' }}>{message}</p>
-        <button onClick={(e) => signInUser(e)}>Sign IN with credentials</button>
-        <button onClick={(e) => signupUser(e)}>Registro</button>
-      </form>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validaSignIn}
+        onSubmit={(values, actions) => {
+          signInUser(values, actions);
+
+          //actions.resetForm();
+        }}
+      >
+        {(formik) => (
+          <VStack
+            padding={4}
+            as='form'
+            mx='auto'
+            w={{ base: '90%', md: 500 }}
+            bg='col.negro'
+            h='70vh'
+            justifyContent='center'
+            onSubmit={formik.handleSubmit}
+          >
+            <Heading> Acceso</Heading>
+
+            <TextField
+              label='Correo electrónico'
+              name='correo'
+              type='email'
+              placeholder='Su correo electrónico'
+            />
+
+            <TextField
+              label='Contraseña'
+              name='password'
+              type='password'
+              placeholder='Escriba su segura contraseña'
+            />
+
+            <Button type='submit' variant='outline' colorScheme='teal'>
+              Ingresar
+            </Button>
+            <Button
+              onClick={registro}
+              type='button'
+              variant='outline'
+              colorScheme='teal'
+            >
+              No tengo usuario, deseo registrarme
+            </Button>
+            {/* <pre>
+              <code>{JSON.stringify(formik, null, 5)}</code>
+            </pre> */}
+          </VStack>
+        )}
+      </Formik>
     </>
   );
 }
@@ -93,13 +101,10 @@ export async function getServerSideProps(context) {
       redirect: { destination: '/' },
     };
   } else {
-    //console.log('RREEQQ', req);
   }
   const csrfToken = await getCsrfToken(context);
-  const providers = await getProviders();
-  //console.log('TTKK', csrfToken);
 
   return {
-    props: { csrfToken, providers },
+    props: { csrfToken },
   };
 }

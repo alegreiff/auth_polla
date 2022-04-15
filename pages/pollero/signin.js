@@ -7,15 +7,15 @@ import { Button, Heading, VStack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 //OTROS
 
-import { TextField } from '../components/forms/TextField';
-import { validaSignIn } from '../lib';
+import { TextField } from '../../components';
+import { validaSignIn } from '../../lib';
 
 export default function SignIn({ csrfToken }) {
   const router = useRouter();
   const [message, setMessage] = useState(null);
 
   const registro = () => {
-    router.push('/register');
+    router.push('/pollero/register');
   };
 
   const signInUser = async (values, actions) => {

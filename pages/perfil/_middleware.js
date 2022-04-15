@@ -7,7 +7,7 @@ export async function middleware(req, ev) {
 
   if (!session) {
     const url = req.nextUrl.clone();
-    url.pathname = '/signin';
+    url.pathname = '/pollero/signin';
     console.log('URL', url);
     return NextResponse.redirect(url);
   } else {

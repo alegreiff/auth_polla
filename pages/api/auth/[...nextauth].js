@@ -26,7 +26,7 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/signin',
+    signIn: '/pollero/signin',
   },
   jwt: {
     //OBSOLETO

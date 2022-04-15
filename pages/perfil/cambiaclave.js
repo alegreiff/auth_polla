@@ -69,14 +69,14 @@ export default function CambiaClavePage({ csrfToken }) {
               label='Contraseña'
               name='oldPassword'
               type='password'
-              placeholder='Escriba su segura contraseña'
+              placeholder='Contraseña actual'
             />
 
             <TextField
               label='Contraseña'
               name='newPassword'
               type='password'
-              placeholder='Escriba su segura contraseña'
+              placeholder='Nueva contraseña'
             />
 
             <Button type='submit' variant='outline' colorScheme='teal'>

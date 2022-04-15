@@ -23,18 +23,14 @@ import Image from 'next/image';
 import { desarrollo, elementosMenu } from '../../lib';
 import { DarkModeSwitch } from '../../lib';
 import { NavLink } from './';
-import { signOut, useSession } from 'next-auth/react';
+import { MenuPerfil } from './MenuPerfil';
 
 const Links = ['Calendario', 'Información', 'Grupos'];
 const Enlaces = elementosMenu;
 
-export const Layout = ({ children, titulo = 'generico' }) => {
+export const Layout = ({ children, titulo = 'Nuestra Polla' }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const srcLogo = useColorModeValue('/logo/nnpp.svg', '/logo/wnnpp.svg');
-  const { data: session } = useSession();
-  const cerrarSesion = () => {
-    signOut();
-  };
 
   return (
     <>
@@ -77,35 +73,19 @@ export const Layout = ({ children, titulo = 'generico' }) => {
             <Spacer />
             <DarkModeSwitch />
 
-            {session && (
-              <Flex alignItems={'center'} ml={5}>
-                <Menu>
-                  <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    variant={'link'}
-                    cursor={'pointer'}
-                    minW={0}
-                  >
-                    <Avatar size={'sm'} src={session?.user.image} />
-                  </MenuButton>
-                  <MenuList>
-                    <MenuItem onClick={cerrarSesion}> Cerrar sesión </MenuItem>
-                    <MenuItem>Link 2</MenuItem>
-                    <MenuDivider />
-                    <MenuItem>Link 3</MenuItem>
-                  </MenuList>
-                </Menu>
-              </Flex>
-            )}
+            <MenuPerfil />
           </Flex>
 
           {isOpen ? (
             <Box pb={4} display={{ md: 'none' }}>
               <Stack as={'nav'} spacing={4}>
-                {/* {Links.map((link) => (
-                  <NavLink key={link}>{link}</NavLink>
-                ))} */}
+                {Enlaces.map((link) => (
+                  <NavLink
+                    key={link.id}
+                    nombre={link.nombre}
+                    enlace={link.enlace}
+                  />
+                ))}
               </Stack>
             </Box>
           ) : null}

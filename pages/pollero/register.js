@@ -15,7 +15,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Heading,
-  InputLeftElement,
   InputRightElement,
   Modal,
   ModalBody,
@@ -32,8 +31,8 @@ import {
 import { useRouter } from 'next/router';
 //OTROS
 
-import { TextField } from '../components/forms/TextField';
-import { validaNuevoUsuario } from '../lib';
+import { TextField } from '../../components';
+import { validaNuevoUsuario } from '../../lib';
 
 export default function SignIn({ csrfToken }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,7 +41,7 @@ export default function SignIn({ csrfToken }) {
   const [message, setMessage] = useState(null);
 
   const signin = () => {
-    router.push('/signin');
+    router.push('/pollero/signin');
   };
 
   const registraUsuario = async (valores, acciones) => {

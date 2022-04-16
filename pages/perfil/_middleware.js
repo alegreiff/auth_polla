@@ -1,8 +1,8 @@
-import { getToken } from 'next-auth/jwt';
+/* import { getToken } from 'next-auth/jwt';
 import { NextResponse } from 'next/server';
 
 export async function middleware(req, ev) {
-  const session = await getToken({ req, secret: 'jaja' });
+  const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   console.log('Desde MiddleWare', session);
 
   if (!session) {
@@ -14,3 +14,4 @@ export async function middleware(req, ev) {
     return NextResponse.next();
   }
 }
+ */

@@ -4,7 +4,7 @@ import { Layout } from '../components/ui';
 
 export default function Home() {
   return (
-    <Layout titulo='Nuestra Polla - INICIO'>
+    <Layout titulo='Inicio'>
       <>
         <Box>hdh iuashdjasdjhasg</Box>
         <h6>https://www.youtube.com/watch?v=UVBUhi5Oaiw</h6>
@@ -13,7 +13,7 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps(context) {
+/* export async function getServerSideProps(context) {
   const { req } = context;
   const session = await getSession({ req });
   if (!session) {
@@ -28,4 +28,4 @@ export async function getServerSideProps(context) {
   return {
     props: { csrfToken },
   };
-}
+} */

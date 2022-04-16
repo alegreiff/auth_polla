@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function middleware(req, ev) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-  console.log(session);
+  console.log('Desde MiddleWare', session);
 
   if (!session) {
     const url = req.nextUrl.clone();

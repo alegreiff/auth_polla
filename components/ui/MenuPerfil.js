@@ -1,6 +1,7 @@
 import {
   Avatar,
   Badge,
+  Box,
   Button,
   Flex,
   Menu,
@@ -10,31 +11,71 @@ import {
   MenuList,
 } from '@chakra-ui/react';
 import { signOut, useSession } from 'next-auth/react';
-import { useContext, useEffect } from 'react';
-import { UserContext } from '../../context/usuarios/UserContext';
+import { useEffect } from 'react';
+
+import { useDispatch, useStore } from '../../context/usuarios/UserProvider';
 import { types } from '../../context/usuarios/userReducer';
-import { elementosPerfil } from '../../lib';
+import { cargaPerfil, elementosPerfil } from '../../lib';
+import { cargaEquipos } from '../../lib/acciones/cargaEquipos';
+import { cargaPartidos } from '../../lib/acciones/cargaPartidos';
 import { NavLink } from './NavLink';
 
 export const MenuPerfil = () => {
+  const dispatch = useDispatch();
+  const store = useStore();
   const { data: session } = useSession();
-  const [store, dispatch] = useContext(UserContext);
-  /* console.log({ session }); */
+  //const [store, dispatch] = useContext(UserContext);
+  const { user, perfil, partidos, equipos } = store;
+
+  //
 
   useEffect(() => {
     if (session) {
-      dispatch({
-        type: types.userLogin,
-        payload: {
-          _id: session?.user._id,
-          email: session?.user.email,
-          name: session?.user.name,
-        },
-      });
+      if (!user) {
+        dispatch({
+          type: types.userLogin,
+          payload: {
+            _id: session?.user._id,
+            email: session?.user.email,
+            name: session?.user.name,
+          },
+        });
+      }
+      if (!perfil) {
+        storePerfil();
+      }
+      if (!partidos) {
+        storePartidos();
+      }
+      if (!equipos) {
+        storeEquipos();
+      }
     } else {
       dispatch({ type: types.userLogout });
     }
-  }, [session, dispatch]);
+    async function storePerfil() {
+      const loadPerfil = await cargaPerfil(session?.user._id);
+      dispatch({
+        type: types.cargaPerfil,
+        payload: loadPerfil.perfil,
+      });
+    }
+    async function storePartidos() {
+      const loadPartidos = await cargaPartidos();
+      dispatch({
+        type: types.cargaPartidos,
+        payload: loadPartidos,
+      });
+    }
+
+    async function storeEquipos() {
+      const loadEquipos = await cargaEquipos();
+      dispatch({
+        type: types.cargaEquipos,
+        payload: loadEquipos,
+      });
+    }
+  }, [session, dispatch, perfil, user, partidos, equipos]);
 
   const cerrarSesion = () => {
     signOut();

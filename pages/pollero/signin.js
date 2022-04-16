@@ -26,6 +26,8 @@ export default function SignIn({ csrfToken }) {
     if (res?.error) {
       setMessage(res.error);
     }
+    //console.log(res);
+
     return router.push('/');
   };
 

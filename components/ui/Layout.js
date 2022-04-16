@@ -1,15 +1,8 @@
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -20,22 +13,23 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 import Head from 'next/head';
 import Image from 'next/image';
-import { desarrollo, elementosMenu } from '../../lib';
+import { elementosMenu } from '../../lib';
 import { DarkModeSwitch } from '../../lib';
 import { NavLink } from './';
 import { MenuPerfil } from './MenuPerfil';
+import { InfoPollero } from './InfoPollero';
 
 const Links = ['Calendario', 'Información', 'Grupos'];
 const Enlaces = elementosMenu;
 
-export const Layout = ({ children, titulo = 'Nuestra Polla' }) => {
+export const Layout = ({ children, titulo = '' }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const srcLogo = useColorModeValue('/logo/nnpp.svg', '/logo/wnnpp.svg');
 
   return (
     <>
       <Head>
-        <title>{titulo}</title>
+        <title>{`Nuestra Polla - ${titulo}`}</title>
       </Head>
       <Container maxW='container.xl'>
         <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -90,6 +84,7 @@ export const Layout = ({ children, titulo = 'Nuestra Polla' }) => {
             </Box>
           ) : null}
         </Box>
+        <InfoPollero />
 
         <Box p={4}> {children} </Box>
       </Container>

@@ -1,13 +1,14 @@
 import { Layout } from '../../components';
+import { useStore } from '../../context/usuarios/UserProvider';
 
 export default function PerfilPage() {
-  const initialValues = {
-    hincha: '',
-    usuario: '',
-  };
+  const { user, perfil } = useStore();
+  //console.log({ datos });
+
   return (
-    <Layout>
+    <Layout titulo={`Perfil de ${user.name}`}>
       <h2>Perfil de usuario</h2>
+      <span> {perfil?.hincha} </span>
     </Layout>
   );
 }

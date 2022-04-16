@@ -17,3 +17,7 @@ export const FechaSingle = ({ date }) => {
     </Stack>
   );
 };
+
+/* 
+
+*/

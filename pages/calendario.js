@@ -9,7 +9,7 @@ import { sortBy } from 'lodash';
 
 export default function CalendarioPage({ partidos, equipos }) {
   const dispatch = useDispatch();
-  const [matches, setMatches] = useState(partidos);
+  const [matches, setMatches] = useState(null);
   const [fase, setFase] = useState(1);
 
   useEffect(() => {
@@ -54,11 +54,11 @@ export default function CalendarioPage({ partidos, equipos }) {
     setMatches(part);
   }, [fase, equipos, partidos]);
 
-  console.log(matches[0]);
+  //console.log(matches[0]);
 
   return (
     <Layout titulo='Calendario'>
-      <TablaFechas datos={matches} />
+      {matches && <TablaFechas datos={matches} />}
     </Layout>
   );
 }

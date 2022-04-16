@@ -61,6 +61,7 @@ export const MenuPerfil = () => {
       });
     }
     async function storePartidos() {
+      console.log('CARGANDO PARTIDOS');
       const loadPartidos = await cargaPartidos();
       dispatch({
         type: types.cargaPartidos,

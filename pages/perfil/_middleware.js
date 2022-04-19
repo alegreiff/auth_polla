@@ -11,7 +11,7 @@ export async function middleware(req, ev) {
     console.log('URL', url);
     return NextResponse.redirect(url);
   } else {
-    console.log('hurrah');
+    //console.log('hurrah');
     return NextResponse.next();
   }
 }

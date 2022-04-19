@@ -13,8 +13,12 @@ export default function Home() {
   return (
     <Layout titulo='Inicio'>
       <VStack padding={4} mx='auto' justifyContent='center'>
-        <Button onClick={ingreso}>Deseo ingresar</Button>
-        <Button onClick={registro}>Deseo realizar el registro básico</Button>
+        <Button variant='solid' bg='lime' onClick={ingreso}>
+          Deseo ingresar
+        </Button>
+        <Button variant='ghost' onClick={registro}>
+          Deseo realizar el registro básico
+        </Button>
       </VStack>
     </Layout>
   );

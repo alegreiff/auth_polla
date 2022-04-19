@@ -7,8 +7,18 @@ export default async function handler(req, res) {
   const { method } = req;
   switch (method) {
     case 'GET':
+      const y = await Partido.deleteMany();
+      console.log(y);
+
       try {
-        finalPartidos.forEach(async (partido) => {
+        /* const partido = await Partido.findOneAndUpdate(
+          { match: 1 },
+          { mloc: 4, mvis: 1, procesado: true },
+          { new: true }
+        );
+        console.log(partido); */
+
+        const crea = finalPartidos.forEach(async (partido) => {
           const nuevoPartido = new Partido(partido);
           //console.log(nuevoPartido);
           await nuevoPartido.save();

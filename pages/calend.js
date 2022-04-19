@@ -126,62 +126,23 @@ export default function CalendPage() {
                   </Mitabla.Cell>
 
                   <Mitabla.Cell>
-                    {local}
-                    <span fontSize='28px'>
-                      <Flag
-                        name={code_loc.toLowerCase()}
-                        className='locabandera'
-                      />
-                    </span>
-
-                    {/* <BanderaPais bandera={code_loc} nombre={local} /> */}
+                    <BanderaPais bandera={code_loc} nombre={local} />
                   </Mitabla.Cell>
                   <Mitabla.Cell>
-                    <Flag
-                      name={code_vis.toLowerCase()}
-                      className='locabandera'
-                    />
-                    {visitante}
-                    {/* <BanderaPais bandera={code_vis} nombre={visitante} /> */}
+                    <BanderaPais bandera={code_vis} nombre={visitante} />
                   </Mitabla.Cell>
 
                   <Mitabla.Cell>
-                    {power}
                     {power > 3350 ? (
-                      <Rating
-                        icon='star'
-                        defaultRating={5}
-                        maxRating={5}
-                        disabled
-                      />
+                      <EstrellasPartido value={power} times={5} />
                     ) : power > 3260 ? (
-                      <Rating
-                        icon='star'
-                        defaultRating={5}
-                        maxRating={4}
-                        disabled
-                      />
+                      <EstrellasPartido value={power} times={4} />
                     ) : power > 3150 ? (
-                      <Rating
-                        icon='star'
-                        defaultRating={5}
-                        maxRating={3}
-                        disabled
-                      />
+                      <EstrellasPartido value={power} times={3} />
                     ) : power > 3080 ? (
-                      <Rating
-                        icon='star'
-                        defaultRating={5}
-                        maxRating={2}
-                        disabled
-                      />
+                      <EstrellasPartido value={power} times={2} />
                     ) : (
-                      <Rating
-                        icon='star'
-                        defaultRating={5}
-                        maxRating={1}
-                        disabled
-                      />
+                      <EstrellasPartido value={power} times={1} />
                     )}
                   </Mitabla.Cell>
                 </Mitabla.Row>

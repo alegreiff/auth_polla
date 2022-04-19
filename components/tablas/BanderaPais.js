@@ -1,10 +1,4 @@
-import {
-  Badge,
-  Button,
-  Image,
-  useColorModeValue,
-  VStack,
-} from '@chakra-ui/react';
+import { Badge, Image, useColorModeValue, VStack } from '@chakra-ui/react';
 
 export const BanderaPais = ({ bandera, nombre }) => {
   const bordeImagen = useColorModeValue('polla.negro', 'polla.blanco');
@@ -17,29 +11,11 @@ export const BanderaPais = ({ bandera, nombre }) => {
         borderColor={bordeImagen}
         src={`/banderas/${bandera.toLowerCase()}.png`}
         alt={nombre}
-        height={45}
-        width={45}
+        height={22}
+        width={22}
         borderRadius='full'
       />
-      <Badge>{nombre}</Badge>
+      <Badge fontSize='1em'>{nombre}</Badge>
     </VStack>
   );
 };
-/* 
-
-style={{
-                        width: cell.column.width,
-                        padding: "10px",
-                        borderStyle: "solid",
-                        borderWidth: "0px",
-                        borderColor:
-                          power > 3320
-                            ? "#a9dfbf"
-                            : power > 3178
-                            ? "#FCF3CF"
-                            : power > 3036
-                            ? "#c39bd3"
-                            : "#d98880",
-                      }}
-
-*/

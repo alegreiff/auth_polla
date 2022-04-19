@@ -1,14 +1,21 @@
-import { getSession, getCsrfToken } from 'next-auth/react';
-import { Box } from '@chakra-ui/react';
+import { Button, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { Layout } from '../components/ui';
 
 export default function Home() {
+  const router = useRouter();
+  const ingreso = () => {
+    router.push('/pollero/signin');
+  };
+  const registro = () => {
+    router.push('/pollero/register');
+  };
   return (
     <Layout titulo='Inicio'>
-      <>
-        <Box>hdh iuashdjasdjhasg</Box>
-        <h6>https://www.youtube.com/watch?v=UVBUhi5Oaiw</h6>
-      </>
+      <VStack padding={4} mx='auto' justifyContent='center'>
+        <Button onClick={ingreso}>Deseo ingresar</Button>
+        <Button onClick={registro}>Deseo realizar el registro básico</Button>
+      </VStack>
     </Layout>
   );
 }

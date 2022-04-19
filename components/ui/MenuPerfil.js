@@ -48,6 +48,7 @@ export const MenuPerfil = () => {
         storePartidos();
       }
       if (!equipos) {
+        console.log(' -- imagine no teams -- ');
         storeEquipos();
       }
     } else {

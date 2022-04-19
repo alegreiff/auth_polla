@@ -1,10 +1,11 @@
 import DB from '../lib/connectDb';
 import { Layout, TablaFechas } from '../components';
 import Partido from '../models/Partido';
+import Equipo from '../models/Equipo';
 import { useDispatch } from '../context/usuarios/UserProvider';
 import { useEffect, useState } from 'react';
 import { types } from '../context/usuarios/userReducer';
-import Equipo from '../models/Equipo';
+
 import { sortBy } from 'lodash';
 
 export default function CalendarioPage({ partidos, equipos }) {

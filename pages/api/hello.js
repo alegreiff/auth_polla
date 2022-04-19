@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     res.status(200).json({ token });
   } else {
     // Not Signed in
-    res.status(200).json({ message: 'No token' });
+    res.status(200).json({ message: 'No token', req: req });
   }
   res.end();
   //res.status(200).json({ name: 'John Doe' })

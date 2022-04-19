@@ -35,7 +35,6 @@ export default NextAuth({
     maxAge: 2592000, /// 30d
     strategy: 'jwt',
     updateAge: 86400, // cada día
-    jwt: true,
   },
   callbacks: {
     async jwt({ token, account, user }) {

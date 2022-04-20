@@ -14,15 +14,4 @@ export async function middleware(req, ev) {
     console.log('ERROR TOKEN goto', url);
     return NextResponse.redirect(url);
   }
-
-  /* if (!session) {
-    const url = req.nextUrl.clone();
-    url.pathname = '/pollero/signin';
-    console.log('URL', url);
-    return NextResponse.redirect(url);
-  } else {
-    console.log('JSON Web Token', JSON.stringify(session, null, 2));
-    //console.log('hurrah');
-    return NextResponse.next();
-  } */
 }

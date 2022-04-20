@@ -5,8 +5,9 @@ const pollaTema = extendTheme({
     polla: {
       blanco: '#f2f3f4',
       negro: '#34495e',
-      win: '#73c6b6',
-      loss: '#e74c3c',
+      gana: '#dff9e8',
+      pierde: '#f9d4d4',
+      empata: '#f1f1ef',
     },
   },
   fonts: {

@@ -3,10 +3,11 @@ import { sortBy } from 'lodash';
 
 import { Flag, Label, Rating, Table as Mitabla } from 'semantic-ui-react';
 import { useEffect, useReducer, useRef, useState } from 'react';
-import { usePartidos } from '../lib/usePartidos';
+
 import { useStore } from '../context/usuarios/UserProvider';
 import { FechaSingle } from '../components/tablas/FechaSingle';
 import { Button, Center, HStack, Text } from '@chakra-ui/react';
+import { usePartidos } from '../lib/hooks';
 
 const tableData = [
   { power: 4000, name: 'John', age: 15, gender: 'Male' },

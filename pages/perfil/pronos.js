@@ -1,4 +1,13 @@
-import { Box, SimpleGrid } from '@chakra-ui/react';
+import {
+  Box,
+  SimpleGrid,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react';
+//import { Tab } from 'semantic-ui-react';
 import { Layout } from '../../components';
 import { GrupoProno } from '../../components/pronos/grupo';
 import { useGrupo } from '../../lib/hooks';
@@ -16,9 +25,52 @@ export default function PronmosPage() {
 
   return (
     <Layout>
-      {/* <div>{grupoA && <GrupoProno partidos={grupoA} />}</div> */}
+      <Tabs align='center' variant='soft-rounded' size='lg'>
+        <TabList>
+          <Tab>A</Tab>
+          <Tab>B</Tab>
+          <Tab>C</Tab>
+          <Tab>D</Tab>
+          <Tab>E</Tab>
+          <Tab>F</Tab>
+          <Tab>G</Tab>
+          <Tab>H</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <GrupoProno grupo='A' partidos={grupoA} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='B' partidos={grupoB} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='C' partidos={grupoC} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='D' partidos={grupoD} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='E' partidos={grupoE} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='F' partidos={grupoF} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='G' partidos={grupoG} />
+          </TabPanel>
+          <TabPanel>
+            <GrupoProno grupo='H' partidos={grupoH} />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </Layout>
+  );
+}
 
-      <SimpleGrid columns={[1, null, 1]} spacing='5px'>
+/* 
+ <div>{grupoA && <GrupoProno partidos={grupoA} />}</div> 
+
+      {/* <SimpleGrid columns={[1, null, 1]} spacing='5px'>
         <Box bg='tomato' height='auto' padding={1}>
           <GrupoProno grupo='A' partidos={grupoA} />
         </Box>
@@ -44,6 +96,4 @@ export default function PronmosPage() {
           <GrupoProno grupo='H' partidos={grupoH} />
         </Box>
       </SimpleGrid>
-    </Layout>
-  );
-}
+*/

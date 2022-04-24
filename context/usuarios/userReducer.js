@@ -37,6 +37,7 @@ export const userReducer = (state, action) => {
         partidos: action.payload,
       };
     case types.cargaEquipos:
+      //console.log('CAREGANOO OS TEAMES', action.payload);
       return {
         ...state,
         equipos: action.payload,

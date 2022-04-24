@@ -10,8 +10,13 @@ export default async function handler(req, res) {
   const { method } = req;
   switch (method) {
     case 'GET':
+      await Equipo.deleteMany();
+      //res.status(201).json({ message: 'Borrada hasta la madre' });
+
       try {
         equipos.forEach(async (eq) => {
+          const group = eq.pos.charAt(0);
+          eq.grupo = group;
           const nuevoEquipo = new Equipo(eq);
           //console.log(nuevoEquipo);
           await nuevoEquipo.save();

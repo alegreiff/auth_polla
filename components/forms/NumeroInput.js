@@ -19,7 +19,6 @@ export const NumeroInput = ({ cambioNum, match }) => {
     setMvis(value);
   };
   useEffect(() => {
-    //console.log('mck');
     cambioNum(match, mloc, mvis);
   }, [mloc, mvis]);
 

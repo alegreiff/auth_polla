@@ -19,6 +19,12 @@ const equipoSchema = new mongoose.Schema(
     },
     pos: { type: String, required: [true, 'POS required'] },
     rank: { type: Number, required: [true, 'FIFA Rank required'] },
+    grupo: { type: String, required: true },
+    pg: { type: Number, default: 0 },
+    pe: { type: Number, default: 0 },
+    pp: { type: Number, default: 0 },
+    gf: { type: Number, default: 0 },
+    gc: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

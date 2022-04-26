@@ -48,7 +48,7 @@ export const MenuPerfil = () => {
         storePartidos();
       }
       if (!equipos) {
-        console.log(' -- imagine no teams -- ');
+        //console.log(' -- imagine no teams -- ');
         storeEquipos();
       }
     } else {
@@ -56,6 +56,7 @@ export const MenuPerfil = () => {
     }
     async function storePerfil() {
       const loadPerfil = await cargaPerfil(session?.user._id);
+      //console.log('LLLPPP', loadPerfil);
       dispatch({
         type: types.cargaPerfil,
         payload: loadPerfil.perfil,
@@ -109,6 +110,7 @@ export const MenuPerfil = () => {
             <MenuDivider />
             <MenuItem onClick={cerrarSesion}> Cerrar sesión </MenuItem>
           </MenuList>
+          <span> {session?.user._id} </span> :<span> {perfil?._id} </span>
         </Menu>
       </Flex>
     );

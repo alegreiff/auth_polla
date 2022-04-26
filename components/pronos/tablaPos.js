@@ -4,15 +4,15 @@ import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
+  useMediaQuery,
 } from '@chakra-ui/react';
 
 export const TablaPosiciones = ({ datos }) => {
+  const [isChiqui] = useMediaQuery('(max-width: 768px)');
   const [grupo, setGrupo] = useState(datos);
   useEffect(() => {
     if (datos) {
@@ -46,19 +46,23 @@ export const TablaPosiciones = ({ datos }) => {
   }
 
   return (
-    <TableContainer>
+    <TableContainer padding={0} margin={0}>
       <Table size='sm'>
         <Thead>
           <Tr>
-            <Th>País</Th>
-            <Th>Pts</Th>
-            <Th>PJ</Th>
-            <Th>PG</Th>
-            <Th>PE</Th>
-            <Th>PP</Th>
-            <Th>GF</Th>
-            <Th>GC</Th>
-            <Th>DG</Th>
+            <Th width='111px'>País</Th>
+            <Th width='25px'>Pts</Th>
+            {!isChiqui && <Th width='25px'>PJ</Th>}
+            <Th width='25px'>PG</Th>
+            {!isChiqui && (
+              <>
+                <Th width='25px'>PE</Th>
+                <Th width='25px'>PP</Th>
+              </>
+            )}
+            <Th width='25px'>GF</Th>
+            <Th width='25px'>GC</Th>
+            <Th width='25px'>DG</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -66,10 +70,14 @@ export const TablaPosiciones = ({ datos }) => {
             <Tr key={id} bg={index < 2 ? 'polla.gana' : 'polla.pierde'}>
               <Td>{pais}</Td>
               <Td>{pts}</Td>
-              <Td>{pj}</Td>
+              {!isChiqui && <Td>{pj}</Td>}
               <Td>{pg}</Td>
-              <Td>{pe}</Td>
-              <Td>{pp}</Td>
+              {!isChiqui && (
+                <>
+                  <Td>{pe}</Td>
+                  <Td>{pp}</Td>
+                </>
+              )}
               <Td>{gf}</Td>
               <Td>{gc}</Td>
               <Td>{dg}</Td>
@@ -80,6 +88,33 @@ export const TablaPosiciones = ({ datos }) => {
     </TableContainer>
   );
 };
+
+/* 
+
+<table style={{ maxWidth: '600px' }}>
+      <thead>
+        <tr>
+          <th>País</th>
+
+          <th>GOLES</th>
+        </tr>
+      </thead>
+      <tbody>
+        {grupo.map(({ id, pais, pj, pg, pe, pp, gf, gc, pts, dg }, index) => (
+          <tr key={id} bg={index < 2 ? 'polla.gana' : 'polla.pierde'}>
+            <td>
+              {pais} {pts} {pj} {pg} {pe} {pp}
+            </td>
+
+            <td>
+              {gf} {gc} {dg}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+*/
 
 /* <Table celled>
       <Table.Header>

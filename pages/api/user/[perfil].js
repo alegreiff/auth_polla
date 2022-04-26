@@ -1,4 +1,5 @@
 import Pollero from '../../../models/polleroModel';
+import Prono from '../../../models/Prono';
 import DB from '../../../lib/connectDb';
 DB();
 export default async function handler(req, res) {
@@ -15,8 +16,16 @@ export default async function handler(req, res) {
 const getPerfil = async (req, res) => {
   const { perfil } = req.query;
   const perfilPollero = await Pollero.findOne({ usuario: perfil });
-
-  return res.status(200).json({ perfil: perfilPollero });
+  if (perfilPollero) {
+    const pronosUser = await Prono.find({
+      pollero: perfilPollero._id,
+    });
+    perfilPollero.pronos = pronosUser;
+    perfilPollero.numeroPronos = pronosUser.length;
+    return res.status(200).json({ perfil: perfilPollero });
+  } else {
+    res.status(201).json({ message: 'No encontrado' });
+  }
 };
 
 const muestraError = (res, error, place = 'desconocido') => {

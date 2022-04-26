@@ -9,7 +9,7 @@ const pronoSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'polleros',
       required: true,
-      unique: true,
+      unique: false,
     },
     mloc: { type: Number, required: [true, 'Marcador equipo local requerido'] },
     mvis: {
@@ -22,8 +22,9 @@ const pronoSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+pronoSchema.index({ match: 1, pollero: 1 }, { unique: true });
 
 let PronosDataset =
-  mongoose.models.pronos || mongoose.model('pronos', partidoSchema);
+  mongoose.models.pronos || mongoose.model('pronos', pronoSchema);
 
 export default PronosDataset;

@@ -13,6 +13,12 @@ const polleroSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  pronos: {
+    type: [[]],
+  },
+  numeroPronos: {
+    type: Number,
+  },
 });
 
 let PolleroDataset =

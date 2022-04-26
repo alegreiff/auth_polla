@@ -9,6 +9,7 @@ export default function PerfilPage() {
     <Layout titulo={`Nuestra Polla - Perfil de ${user?.name}`}>
       <h2>Perfil de usuario</h2>
       <span> {perfil?.hincha} </span>
+      <pre>{JSON.stringify(perfil, null, 2)}</pre>
     </Layout>
   );
 }

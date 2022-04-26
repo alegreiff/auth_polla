@@ -1,14 +1,19 @@
 import {
+  Box,
   HStack,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  useMediaQuery,
+  VStack,
+  Button,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
 export const NumeroInput = ({ cambioNum, match }) => {
+  const [isChiqui] = useMediaQuery('(max-width: 768px)');
   const [partido, setPartido] = useState(match);
   const [mloc, setMloc] = useState();
   const [mvis, setMvis] = useState();
@@ -22,9 +27,17 @@ export const NumeroInput = ({ cambioNum, match }) => {
     cambioNum(match, mloc, mvis);
   }, [mloc, mvis]);
 
+  const LayoutNumeros = ({ children }) => {
+    if (isChiqui) {
+      return <VStack>{children}</VStack>;
+    } else {
+      return <HStack>{children}</HStack>;
+    }
+  };
+
   return (
-    <>
-      <HStack>
+    <LayoutNumeros>
+      <>
         <NumberInput
           onChange={changeMloc}
           size='lg'
@@ -46,10 +59,9 @@ export const NumeroInput = ({ cambioNum, match }) => {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-        <span>
-          {' '}
-          {match} LOC: {mloc} VIS: {mvis}{' '}
-        </span>
+        {/* <span>          
+          {match} LOC: {mloc} VIS: {mvis}
+        </span> */}
         <NumberInput
           onChange={changeMvis}
           size='lg'
@@ -71,7 +83,7 @@ export const NumeroInput = ({ cambioNum, match }) => {
             <NumberDecrementStepper />
           </NumberInputStepper>
         </NumberInput>
-      </HStack>
-    </>
+      </>
+    </LayoutNumeros>
   );
 };

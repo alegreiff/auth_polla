@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-export const NumeroInput = ({ cambioNum, match }) => {
+export const NumeroInput = ({ cambioNum, match, score }) => {
   const [isChiqui] = useMediaQuery('(max-width: 768px)');
   const [partido, setPartido] = useState(match);
   const [mloc, setMloc] = useState();
@@ -23,6 +23,14 @@ export const NumeroInput = ({ cambioNum, match }) => {
   const changeMvis = (value) => {
     setMvis(value);
   };
+
+  useEffect(() => {
+    if (score) {
+      setMloc(score[0]);
+      setMvis(score[1]);
+    }
+  }, [score]);
+
   useEffect(() => {
     cambioNum(match, mloc, mvis);
   }, [mloc, mvis]);

@@ -192,6 +192,19 @@ export const GrupoProno = ({ partidos, grupo }) => {
     ); */
   };
 
+  const setMarcadorProno = (match) => {
+    if (arePronos) {
+      const partido = arePronos.find((part) => part.match === match);
+      if (partido) {
+        return [partido.mloc, partido.mvis];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  };
+
   const guardaGrupo = async () => {
     const ID = perfil._id;
     const response = await fetch('/api/polla/pronos', {
@@ -283,7 +296,11 @@ export const GrupoProno = ({ partidos, grupo }) => {
                         nombre={local}
                         tipo='local'
                       />
-                      <NumeroInput cambioNum={estadoNumeros} match={match} />
+                      <NumeroInput
+                        cambioNum={estadoNumeros}
+                        match={match}
+                        score={setMarcadorProno(match)}
+                      />
                       <BanderaPais
                         bandera={code_vis}
                         nombre={visitante}

@@ -9,16 +9,16 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-} from '@chakra-ui/react';
-import { signOut, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
+} from "@chakra-ui/react";
+import { signOut, useSession } from "next-auth/react";
+import { useEffect } from "react";
 
-import { useDispatch, useStore } from '../../context/usuarios/UserProvider';
-import { types } from '../../context/usuarios/userReducer';
-import { cargaPerfil, elementosPerfil } from '../../lib';
-import { cargaEquipos } from '../../lib/acciones/cargaEquipos';
-import { cargaPartidos } from '../../lib/acciones/cargaPartidos';
-import { NavLink } from './NavLink';
+import { useDispatch, useStore } from "../../context/usuarios/UserProvider";
+import { types } from "../../context/usuarios/userReducer";
+import { cargaPerfil, elementosPerfil } from "../../lib";
+import { cargaEquipos } from "../../lib/acciones/cargaEquipos";
+import { cargaPartidos } from "../../lib/acciones/cargaPartidos";
+import { NavLink } from "./NavLink";
 
 export const MenuPerfil = () => {
   const dispatch = useDispatch();
@@ -28,6 +28,8 @@ export const MenuPerfil = () => {
   const { user, perfil, partidos, equipos } = store;
 
   //
+
+  console.log(session);
 
   useEffect(() => {
     if (session) {
@@ -63,7 +65,7 @@ export const MenuPerfil = () => {
       });
     }
     async function storePartidos() {
-      console.log('CARGANDO PARTIDOS');
+      console.log("CARGANDO PARTIDOS");
       const loadPartidos = await cargaPartidos();
       dispatch({
         type: types.cargaPartidos,
@@ -85,19 +87,19 @@ export const MenuPerfil = () => {
   };
   if (session) {
     return (
-      <Flex alignItems={'center'} ml={5}>
+      <Flex alignItems={"center"} ml={5}>
         <Menu>
           <MenuButton
             as={Button}
-            rounded={'full'}
-            variant={'link'}
-            cursor={'pointer'}
+            rounded={"full"}
+            variant={"link"}
+            cursor={"pointer"}
             minW={0}
           >
-            <Avatar size={'sm'} src={session?.user.image} />
+            <Avatar size={"sm"} src={session?.user.image} />
           </MenuButton>
           <MenuList>
-            <Badge w='100%' padding={2}>
+            <Badge w="100%" padding={2}>
               {session.user.name}
             </Badge>
             <MenuDivider />

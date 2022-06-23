@@ -17,6 +17,7 @@ export const NumeroInput = ({ cambioNum, match, score }) => {
   const [partido, setPartido] = useState(match);
   const [mloc, setMloc] = useState();
   const [mvis, setMvis] = useState();
+
   const changeMloc = (value) => {
     setMloc(value);
   };
@@ -25,11 +26,12 @@ export const NumeroInput = ({ cambioNum, match, score }) => {
   };
 
   useEffect(() => {
+    console.log('NO PASA');
     if (score) {
       setMloc(score[0]);
       setMvis(score[1]);
     }
-  }, [score]);
+  }, []);
 
   useEffect(() => {
     cambioNum(match, mloc, mvis);

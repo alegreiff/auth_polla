@@ -1,41 +1,41 @@
-import { BanderaPais, EstrellasPartido, Layout } from '../components';
-import { sortBy } from 'lodash';
+import { BanderaPais, EstrellasPartido, Layout } from "../components";
+import { sortBy } from "lodash";
 
-import { Flag, Label, Rating, Table as Mitabla } from 'semantic-ui-react';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { Flag, Label, Rating, Table as Mitabla } from "semantic-ui-react";
+import { useEffect, useReducer, useRef, useState } from "react";
 
-import { useStore } from '../context/usuarios/UserProvider';
-import { FechaSingle } from '../components/tablas/FechaSingle';
-import { Button, Center, HStack, Text } from '@chakra-ui/react';
-import { usePartidos } from '../lib/hooks';
+import { useStore } from "../context/usuarios/UserProvider";
+import { FechaSingle } from "../components/tablas/FechaSingle";
+import { Button, Center, HStack, Text } from "@chakra-ui/react";
+import { usePartidos } from "../lib/hooks";
 
 const tableData = [
-  { power: 4000, name: 'John', age: 15, gender: 'Male' },
-  { power: 3000, name: 'Amber', age: 40, gender: 'Female' },
-  { power: 2000, name: 'Leslie', age: 25, gender: 'Other' },
-  { power: 1000, name: 'Ben', age: 70, gender: 'Male' },
+  { power: 4000, name: "John", age: 15, gender: "Male" },
+  { power: 3000, name: "Amber", age: 40, gender: "Female" },
+  { power: 2000, name: "Leslie", age: 25, gender: "Other" },
+  { power: 1000, name: "Ben", age: 70, gender: "Male" },
 ];
 
 function exampleReducer(state, action) {
   switch (action.type) {
-    case 'CHANGE_DATA':
+    case "CHANGE_DATA":
       return {
         ...state,
         data: action.payload,
       };
-    case 'CHANGE_SORT':
+    case "CHANGE_SORT":
       if (state.column === action.column) {
         return {
           ...state,
           data: state.data.slice().reverse(),
           direction:
-            state.direction === 'ascending' ? 'descending' : 'ascending',
+            state.direction === "ascending" ? "descending" : "ascending",
         };
       }
       return {
         column: action.column,
         data: sortBy(state.data, [action.column]),
-        direction: 'ascending',
+        direction: "ascending",
       };
     default:
       throw new Error();
@@ -56,7 +56,7 @@ export default function CalendPage() {
   useEffect(() => {
     if (!data) {
       dispatch({
-        type: 'CHANGE_DATA',
+        type: "CHANGE_DATA",
         payload: datosPartidos,
       });
     }
@@ -65,7 +65,7 @@ export default function CalendPage() {
   if (!data) {
     return (
       <Layout>
-        No matches yet {datosPartidos?.length} -- {data?.length}{' '}
+        No matches yet {datosPartidos?.length} -- {data?.length}{" "}
       </Layout>
     );
   }
@@ -73,19 +73,19 @@ export default function CalendPage() {
   return (
     <Layout>
       <h6>Estamos probando</h6>
-      <Mitabla sortable style={{ background: 'none' }}>
+      <Mitabla sortable style={{ background: "none" }}>
         <Mitabla.Header>
           <Mitabla.Row>
             <Mitabla.HeaderCell
-              sorted={column === 'datte' ? direction : null}
-              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'datte' })}
+              sorted={column === "datte" ? direction : null}
+              onClick={() => dispatch({ type: "CHANGE_SORT", column: "datte" })}
             >
               FECHA
             </Mitabla.HeaderCell>
 
             <Mitabla.HeaderCell
-              sorted={column === 'grupo' ? direction : null}
-              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'grupo' })}
+              sorted={column === "grupo" ? direction : null}
+              onClick={() => dispatch({ type: "CHANGE_SORT", column: "grupo" })}
             >
               Grupo
             </Mitabla.HeaderCell>
@@ -94,8 +94,8 @@ export default function CalendPage() {
             <Mitabla.HeaderCell>Match</Mitabla.HeaderCell>
 
             <Mitabla.HeaderCell
-              sorted={column === 'power' ? direction : null}
-              onClick={() => dispatch({ type: 'CHANGE_SORT', column: 'power' })}
+              sorted={column === "power" ? direction : null}
+              onClick={() => dispatch({ type: "CHANGE_SORT", column: "power" })}
             >
               Juerza
             </Mitabla.HeaderCell>
@@ -120,7 +120,7 @@ export default function CalendPage() {
                   </Mitabla.Cell>
                   <Mitabla.Cell>
                     <Center>
-                      <Text fontSize='4xl' color='grey'>
+                      <Text fontSize="4xl" color="grey">
                         {grupo}
                       </Text>
                     </Center>

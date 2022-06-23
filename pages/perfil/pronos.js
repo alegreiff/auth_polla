@@ -12,7 +12,7 @@ import { Layout } from '../../components';
 import { GrupoProno } from '../../components/pronos/grupo';
 import { useGrupo } from '../../lib/hooks';
 
-export default function PronmosPage() {
+export default function PronosPage() {
   const grupoA = useGrupo('A');
   const grupoB = useGrupo('B');
   const grupoC = useGrupo('C');

@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const { pollero } = req.query;
 
-  if (pollero === undefined) {
+  if (pollero === 'undefined') {
     res.status(403).json({ message: 'ERROR CARGANDO' });
   }
   switch (method) {

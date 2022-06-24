@@ -1,22 +1,23 @@
-import { Button, VStack } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { Layout } from '../components/ui';
+import { Button, VStack } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { Layout } from "../components/ui";
 
 export default function Home() {
   const router = useRouter();
   const ingreso = () => {
-    router.push('/pollero/signin');
+    router.push("/pollero/signin");
   };
   const registro = () => {
-    router.push('/pollero/register');
+    router.push("/pollero/register");
   };
   return (
-    <Layout titulo='Inicio'>
-      <VStack padding={4} mx='auto' justifyContent='center'>
-        <Button variant='solid' bg='lime' onClick={ingreso}>
+    <Layout titulo="Inicio">
+      <VStack padding={4} mx="auto" justifyContent="center">
+        <h4>Voy a la ciudad...</h4>
+        <Button variant="solid" bg="lime" onClick={ingreso}>
           Deseo ingresar
         </Button>
-        <Button variant='ghost' onClick={registro}>
+        <Button variant="ghost" onClick={registro}>
           Deseo realizar el registro básico
         </Button>
       </VStack>

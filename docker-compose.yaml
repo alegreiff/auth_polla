@@ -1,7 +1,7 @@
 services:
   entriesdb:
     image: mongo:5.0.0
-    container_name: polla_data
+    container_name: polla_datadb
     ports:
       - 27017:27017
     volumes:

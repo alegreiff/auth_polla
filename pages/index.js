@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <Layout titulo="Inicio">
       <VStack padding={4} mx="auto" justifyContent="center">
-        <h4>Voy a la ciudad...</h4>
+        <h4 className="especial">0 1 2 3 4</h4>
         <Button variant="solid" bg="lime" onClick={ingreso}>
           Deseo ingresar
         </Button>

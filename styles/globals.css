@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.especial {
+  background: lime; padding: 3rem
+}
